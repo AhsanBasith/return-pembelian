@@ -37,7 +37,6 @@ class PengirimanController extends Controller
             ->update([
                 'status_pengiriman' => $request->status_pengiriman,
             ]);
-        // ModelNotaRetur::where('id', $id)->delete();
         return redirect('/pengiriman')->with('success', 'Data Berhasil Disimpan');
     }
     public function updatepengiriman(Request $request, $id)
