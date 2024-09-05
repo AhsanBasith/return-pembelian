@@ -100,7 +100,21 @@
                                                             <th scope="row">{{ $no++ }}</th>
                                                             <td>{{ $data->nama_barang }}</td>
                                                             <td>{{ $data->kode_barang }}</td>
-                                                            <td>{{ $data->kualitas }}</td>
+                                                            <td>
+                                                                @if (isset($data->kualitas) && !empty($data->kualitas))
+                                                                    @if ($data->kualitas !== 'Rusak')
+                                                                        <span class="badge text-bg-primary">
+                                                                            {{ $data->kualitas }}
+                                                                        </span>
+                                                                    @elseif ($data->kualitas !== 'Baik')
+                                                                        <span class="badge text-bg-danger">
+                                                                            {{ $data->kualitas }}
+                                                                        </span>
+                                                                    @endif
+                                                                @else
+                                                                    -
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <button class="btn btn-success" data-bs-toggle="modal"
                                                                     data-bs-target="#ModalTambahKualitas{{ $data->id }}">Set

@@ -15,7 +15,10 @@ class PengirimanController extends Controller
             'title' => 'Pengiriman',
             'data_nota' => ModelNotaRetur::join('barang', 'barang.id', '=', 'nota_retur.barang_id')
                 ->select('nota_retur.*', 'barang.nama_barang')->get(),
-            'data_pengiriman' => ModelPengiriman::all(),
+            // 'data_pengiriman' => ModelPengiriman::all(),
+            'data_pengiriman' => ModelPengiriman::join('nota_retur', 'nota_retur_id', '=', 'pengiriman.nota_retur_id')
+                ->join('barang', 'barang.id', '=', 'nota_retur.barang_id')
+                ->get(),
         );
         return view('pengiriman', $data);
     }

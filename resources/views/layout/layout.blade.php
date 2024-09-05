@@ -62,19 +62,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script>
-        $.ajax({
-            type: 'GET',
-            url: 'https://api.example.com/data',
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    </script>
+
 </body>
 
 </html>

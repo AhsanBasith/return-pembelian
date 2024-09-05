@@ -51,11 +51,22 @@
                                                                 <td>{{ $data->nama_barang }}</td>
                                                                 <td>{{ $data->kode_barang }}</td>
                                                                 <td>{{ $data->harga }}</td>
-                                                                <td>{{ $data->kualitas }}</td>
                                                                 <td>
-                                                                    <button class="btn btn-success" data-bs-toggle="modal"
+                                                                    <span class="badge text-bg-danger">
+                                                                        {{ $data->kualitas }}
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    @if ($data->nota_retur !== 'yes')
+                                                                        <button class="btn btn-primary"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#ModalAddNota{{ $data->id }}">Add
+                                                                            Nota Retur</button>
+                                                                    @endif
+
+                                                                    {{-- <button class="btn btn-primary" data-bs-toggle="modal"
                                                                         data-bs-target="#ModalAddNota{{ $data->id }}">Add
-                                                                        Nota Retur</button>
+                                                                        Nota Retur</button> --}}
                                                                 </td>
                                                             </tr>
                                                             @php
@@ -144,7 +155,7 @@
 
 
     <!-- Modal Tambah Barang-->
-    <div class="modal fade" id="ModalTambahBarang" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="ModalTambahBarang" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -171,10 +182,7 @@
                             <label for="InputHarga" class="form-label">Harga</label>
                             <input type="text" class="form-control" name="harga" id="InputHarga">
                         </div>
-                        {{-- <div class="mb-3">
-                            <label for="InputStok" class="form-label">Stok</label>
-                            <input type="text" class="form-control" name="stok" id="InputStok">
-                        </div> --}}
+
                         <div class="mb-3">
                             <label for="InputSupplier" class="form-label">Supplier</label>
                             <input type="text" class="form-control" name="supplier" id="InputSupplier">
@@ -186,7 +194,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Modal Add Nota-->
     @foreach ($data_barang as $db)
@@ -217,7 +225,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="InputHarga" class="form-label">Status Nota</label>
-                                <input type="text" class="form-control" name="status_nota" id="InputStatus" required>
+                                <select class="form-select" name="status_nota" id="inputGroupSelect01">
+                                    <option selected>Pilih...</option>
+                                    <option value="Dikonfirmasi">Dikonfirmasi</option>
+                                    <option value="Ditinjau">Ditinjau</option>
+                                </select>
+                                {{-- <input type="text" class="form-control" name="status_nota" id="InputStatus" required> --}}
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>

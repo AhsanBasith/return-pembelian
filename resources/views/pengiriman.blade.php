@@ -35,7 +35,6 @@
                                                         <th scope="col">Tanggal Nota</th>
                                                         <th scope="col">Total Harga</th>
                                                         <th scope="col">Status</th>
-                                                        <th scope="col">Aksi</th>
                                                     </tr>
 
                                                 </thead>
@@ -86,10 +85,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        {{-- <th scope="col">Nama Barang</th> --}}
-                                                        <th scope="col">Tanggal Pengiriman</th>
-                                                        <th scope="col">Status Pengiriman</th>
-                                                        <th scope="col">Catatan</th>
+                                                        <th scope="col">Nama Barang</th>
+                                                        <th scope="col">Tanggal Retur</th>
+                                                        <th scope="col">Total Harga</th>
+                                                        <th scope="col">Status </th>
+                                                        {{-- <th scope="col">Catatan</th> --}}
                                                         <th scope="col">Aksi</th>
                                                     </tr>
 
@@ -102,10 +102,11 @@
                                                     @foreach ($data_pengiriman as $data)
                                                         <tr>
                                                             <th scope="row">{{ $no++ }}</th>
-                                                            {{-- <td>{{ $data->barang->nama_barang }}</td> --}}
+                                                            <td>{{ $data->nama_barang }}</td>
                                                             <td>{{ $data->tanggal_pengiriman }}</td>
+                                                            <td>{{ $data->total_harga }}</td>
                                                             <td>{{ $data->status_pengiriman }}</td>
-                                                            <td>{{ $data->catatan }}</td>
+                                                            {{-- <td>{{ $data->catatan }}</td> --}}
                                                             <td>
                                                                 <button class="btn btn-success" data-bs-toggle="modal"
                                                                     data-bs-target="#ModalEditPengiriman{{ $data->id }}">Edit</button>

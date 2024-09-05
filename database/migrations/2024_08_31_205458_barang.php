@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('stok')->nullable();
             $table->string('supplier')->nullable();
             $table->string('kualitas')->nullable();
+            $table->string('nota_retur')->nullable();
             $table->timestamps();
         });
     }

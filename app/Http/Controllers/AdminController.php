@@ -15,6 +15,7 @@ class AdminController extends Controller
             'data_barang' => ModelBarang::all(),
             'data_nota' => ModelNotaRetur::join('barang', 'barang.id', '=', 'nota_retur.barang_id')
                 ->select('nota_retur.*', 'barang.nama_barang')->get(),
+
         );
         return view('admin', $data);
     }
@@ -27,7 +28,12 @@ class AdminController extends Controller
             'status_nota' => $request->status_nota,
 
         ]);
-        // ModelBarang::where('id', $id)->delete();
+        $request->merge(['nota_retur' => 'yes']);
+        ModelBarang::where('id', $id)
+            ->where('id', $id)
+            ->update([
+                'nota_retur' => $request->nota_retur,
+            ]);
 
         return redirect('/admin')->with('success', 'Data Berhasil Disimpan');
     }
