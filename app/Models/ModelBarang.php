@@ -17,7 +17,8 @@ class ModelBarang extends Model
         'harga',
         // 'stok',
         'supplier',
-        'kualitas'
+        'kualitas',
+        'nota_retur'
     ];
 
 

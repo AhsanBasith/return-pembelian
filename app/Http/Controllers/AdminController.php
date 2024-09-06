@@ -30,7 +30,6 @@ class AdminController extends Controller
         ]);
         $request->merge(['nota_retur' => 'yes']);
         ModelBarang::where('id', $id)
-            ->where('id', $id)
             ->update([
                 'nota_retur' => $request->nota_retur,
             ]);
@@ -47,11 +46,24 @@ class AdminController extends Controller
                 'total_harga' => $request->total_harga,
                 'status_nota' => $request->status_nota,
             ]);
-        return redirect('/admin')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect('/admin')->with('success', 'Data Berhasil Diupdate');
     }
-    public function destroynota($id)
+    public function destroynota(Request $request, $id)
     {
-        ModelNotaRetur::where('id', $id)->delete();
-        return redirect('/admin')->with('success', 'Data Berhasil Ditambahkan');
+        
+        // Dapatkan data nota retur yang akan dihapus
+    $notaRetur = ModelNotaRetur::where('id', $id)->first();
+
+    // Hapus data nota retur
+    ModelNotaRetur::where('id', $id)->delete();
+
+    // Perbarui barang
+    if ($notaRetur) {
+        ModelBarang::where('id', $notaRetur->barang_id)
+            ->update([
+                'nota_retur' => 'no',
+            ]);
+    }
+        return redirect('/admin')->with('success', 'Data Berhasil dihapus');
     }
 }

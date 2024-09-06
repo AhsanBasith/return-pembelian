@@ -19,6 +19,7 @@ class GudangController extends Controller
     }
     public function storebarang(Request $request)
     {
+        $request->merge(['nota_retur' => 'no']);
         ModelBarang::create([
             'nama_barang' => $request->nama_barang,
             'kode_barang' => $request->kode_barang,
@@ -26,6 +27,7 @@ class GudangController extends Controller
             'harga' => $request->harga,
             'stok' => $request->stok,
             'supplier' => $request->supplier,
+            'nota_retur' => $request->nota_retur,
         ]);
         return redirect('/gudang')->with('success', 'Data Berhasil Disimpan');
     }

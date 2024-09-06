@@ -11,23 +11,25 @@
                     <div class="d-flex align-items-start">
                         <div class="list-group flex-column me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <button class="list-group-item list-group-item-action active" id="v-pills-home-tab"
-                                data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab"
+                                data-bs-toggle="pill" data-bs-target="#v-pills-laporan" type="button" role="tab"
                                 aria-controls="v-pills-home" aria-selected="true">Laporan Kerusakan</button>
                             <button class="list-group-item list-group-item-action" id="v-pills-profile-tab"
-                                data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab"
+                                data-bs-toggle="pill" data-bs-target="#v-pills-nota" type="button" role="tab"
                                 aria-controls="v-pills-profile" aria-selected="false">Nota Retur</button>
                         </div>
 
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                            <div class="tab-pane fade show active" id="v-pills-laporan" role="tabpanel"
                                 aria-labelledby="v-pills-home-tab" tabindex="0">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Laporan Kerusakan</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive table-bordered">
-                                            <table class="table">
+                                <div class="container">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Laporan Kerusakan</h5>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-striped nowrap" id="myTable" class="display"
+                                                style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
@@ -58,10 +60,14 @@
                                                                 </td>
                                                                 <td>
                                                                     @if ($data->nota_retur !== 'yes')
-                                                                        <button class="btn btn-primary"
+                                                                        <button class="btn btn-sm btn-primary"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#ModalAddNota{{ $data->id }}">Add
+                                                                            data-bs-target="#ModalAddNota{{ $data->id }}">Buat
                                                                             Nota Retur</button>
+                                                                    @elseif ($data->nota_retur !== 'no')
+                                                                        <span class="badge text-bg-success">
+                                                                            <i class="fas fa-check"></i>Nota Retur dibuat
+                                                                        </span>
                                                                     @endif
 
                                                                     {{-- <button class="btn btn-primary" data-bs-toggle="modal"
@@ -83,11 +89,12 @@
 
                                                 </tbody>
                                             </table>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                            <div class="tab-pane fade" id="v-pills-nota" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab" tabindex="0">
                                 <div class="card">
                                     <div class="card-header">
@@ -292,7 +299,12 @@
                     </div>
                     <form action="/admin/destroynota/{{ $hdn->id }}" method="POST">
                         @csrf
+
                         <div class="modal-body">
+
+                            <input type="text" class="form-control" name="id" id="InputBarang"
+                                aria-describedby="emailHelp" value="{{ $hdn->barang_id }}" hidden>
+
                             <div class="form-goup">
                                 <h5>Apakah kamu ingin menghapus nota ini?</h5>
                             </div>
